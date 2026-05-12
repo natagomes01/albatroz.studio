@@ -43,4 +43,16 @@ export function anchor(locale: Locale, key: keyof (typeof anchors)['pt-br']): st
   return anchors[locale][key];
 }
 
+export const whatsapp = {
+  phone: '551151999787',
+  message: {
+    'pt-br': 'Olá! Vim pelo site e quero saber como funciona seu Sistema de Vendas com IA',
+    en: 'Hi! I came from the Albatroz site and would like to learn how your AI Sales System works.',
+  },
+} as const satisfies { phone: string; message: Record<Locale, string> };
+
+export function whatsappUrl(locale: Locale): string {
+  return `https://wa.me/${whatsapp.phone}?text=${encodeURIComponent(whatsapp.message[locale])}`;
+}
+
 export type { Locale, Strings } from './types';

@@ -1,6 +1,6 @@
 ---
 import type { Locale } from '@i18n/index';
-import { t, anchor } from '@i18n/index';
+import { t, anchor, whatsappUrl } from '@i18n/index';
 
 interface Props {
   locale: Locale;
@@ -8,7 +8,7 @@ interface Props {
 
 const { locale } = Astro.props;
 const s = t(locale).hero;
-const contactHref = anchor(locale, 'contact');
+const contactHref = whatsappUrl(locale);
 const protocolHref = anchor(locale, 'protocol');
 
 // Convert **bold** markers in subheadline to <strong>
@@ -23,7 +23,7 @@ const subhtml = s.subheadline.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
     </h1>
     <p class="alb-hero__sub reveal reveal--delay-2" set:html={subhtml}></p>
     <div class="alb-hero__ctas reveal reveal--delay-3">
-      <a class="alb-btn alb-btn--primary" href={contactHref}>
+      <a class="alb-btn alb-btn--primary" href={contactHref} target="_blank" rel="noreferrer noopener">
         <span>{s.ctaPrimary}</span>
         <svg class="alb-btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
           <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="square" stroke-linejoin="miter"/>
